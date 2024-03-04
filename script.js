@@ -1,3 +1,10 @@
+const playerScoreText = document.querySelector('.playerScore')
+const pcScore = document.querySelector('.pcScore')
+const left = document.querySelector('.chanceLeft')
+const message = document.querySelector('.message')
+const winner = document.querySelector('.winner')
+const reset = document.querySelector('.reset')
+const resetBtn = document.querySelector('.reset_btn')
 function getComputerChoice() {
       const randomNum = Math.floor(Math.random()*3)+1
       const computerChoice = randomNum === 1 ? "Rock" : randomNum === 2 ? "Paper" :"Scissors"
@@ -8,46 +15,74 @@ function getComputerChoice() {
 let playerScore = 0
 let computerScore =0
 
-function playRound(getComputerChoice) {
-    let playerChoice = prompt("Rock, paper or scissors?").toLowerCase();
+
+function playRound(playerChoice,getComputerChoice) {
+       
+
+ 
      if(playerChoice==="rock" && getComputerChoice() === "paper") {
-        console.log( "You lose ! paper beats rock");
+       message.innerText = "You lose ! paper beats rock";
         computerScore++
      }
     else if(playerChoice==="rock" && getComputerChoice() === "scissors") {
-        console.log("You won ! rock beats scissors");
+        message.innerText ="You won ! rock beats scissors";
         playerScore++
     } 
     else if(playerChoice==="paper" && getComputerChoice() === "rock") {
-    console.log("You won ! paper beats rock");
+    message.innerText ="You won ! paper beats rock";
     playerScore++
     } 
     else if(playerChoice==="paper" && getComputerChoice() === "scissors") {
-        console.log("You lose ! scissors beats paper");
+        message.innerText ="You lose ! scissors beats paper";
         computerScore++
     } 
     else if(playerChoice==="scissors" && getComputerChoice() === "rock") {
-   console.log("You lose ! rock beats scissors");
+  message.innerText ="You lose ! rock beats scissors";
     computerScore++
     } 
     else if(playerChoice==="scissors" && getComputerChoice() === "paper") {
-        console.log("You won ! scissors beats paper");
+       message.innerText ="You won ! scissors beats paper";
         playerScore++
     } 
 else{
-   console.log('tie');
+   message.innerText  = "tie"
 }
-  
+ 
+pcScore.innerText = computerScore
+playerScoreText.innerText = playerScore
+left.innerText = Number(left.innerText) -1
+if(Number(left.innerText) === 0){
+   
+  if(playerScore > computerScore){
+    winner.innerText = "Player"
+  } else if(computerScore > playerScore){
+    winner.innerText = "Computer"
+  } else{
+    winner.innerText = "tie"
+  }
+   reset.style.display = "flex"
+}
    
   }
 
-  for(let i =0;i<5;i++){
-    playRound(getComputerChoice)
 
-    if(i===4){
-      
-        console.log(`${playerScore > computerScore ? "Player Won" : "Computer Won"} your score - ${playerScore},computer score  - ${computerScore}`)
+  
+  document.addEventListener('click',e=>{
+    const btn = e.target
+    if(btn.classList.value === "btn"){
+            const playerChoice =e.target.innerText.toLowerCase();
+            playRound(playerChoice,getComputerChoice)
+          
+
     }
-  }
-  
-  
+  })
+
+  resetBtn.addEventListener('click',()=>{
+    reset.style.display = "none"
+    playerScore = 0
+    computerScore = 0
+    left.innerText = 5
+    pcScore.innerText = 0
+    playerScoreText.innerText = 0
+    
+  })

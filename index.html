@@ -3,10 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
     <script defer src="/script.js"></script>
 </head>
 <body>
-    game
+   <section class="container">
+    <h1>Rock Paper Scissor</h1>
+    <div>
+       <p>Player - <span class="playerScore">0</span></p>
+       <p>Computer - <span class="pcScore">0</span></p>
+    </div>
+    <div>
+        <h2>Choose your move</h2>
+        <p>Chance left - <span class="chanceLeft">5</span></p>
+    </div>
+    <div class="btns">
+        <button class="btn">
+            Rock
+        </button>
+        <button class="btn">
+            Paper
+        </button>
+        <button class="btn">
+            Scissors
+        </button>
+    </div>
+
+    <p>message - <span class="message"></span></p>
+
+   </section>
+  
+   <div class="reset">
+    <p>Winner is - <span class="winner"></span></p>
+    <button class="reset_btn">Reset</button>
+   </div>
+    
 </body>
 </html>
